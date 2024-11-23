@@ -13,48 +13,54 @@ class OptionsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 1, 160, 252),
+      backgroundColor: const Color.fromARGB(255, 1, 160, 252),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 1, 160, 252),
+        backgroundColor: const Color.fromARGB(255, 1, 160, 252),
         leading: IconButton(
           onPressed: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const HomePage()));
           },
-          icon: Icon(Icons.home_outlined),
+          icon: const Icon(Icons.home_outlined),
           iconSize: 40.0,
         ),
       ),
-      body: ListView(padding: EdgeInsets.all(16.0), children: [
-        Text(
+      body: ListView(padding: const EdgeInsets.all(16.0), children: [
+        const Text(
           'Category',
           style: TextStyle(fontSize: 25),
         ),
         Center(
           child: ToggleButtons(
-            children: <Widget>[
-              ElevatedButton(
-                onPressed: () {},
-                child: Text('test1'),
-              ),
-              Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15),
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text('test2'),
-                  ))
-            ],
             isSelected: isSelected1,
             onPressed: (int index) {
               (() {
                 isSelected1[index] = !isSelected1[index];
               });
             },
+            children: <Widget>[
+              ElevatedButton(
+                onPressed: () {},
+                child: Text('test1'),
+              ),
+              Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Text('test2'),
+                  ))
+            ],
           ),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Center(
           child: ToggleButtons(
+            isSelected: isSelected2,
+            onPressed: (int index) {
+              (() {
+                isSelected2[index] = !isSelected2[index];
+              });
+            },
             children: <Widget>[
               ElevatedButton(
                 onPressed: () {},
@@ -68,17 +74,17 @@ class OptionsPage extends StatelessWidget {
                 ),
               )
             ],
+          ),
+        ),
+        const SizedBox(height: 10),
+        Center(
+          child: ToggleButtons(
             isSelected: isSelected2,
             onPressed: (int index) {
               (() {
                 isSelected2[index] = !isSelected2[index];
               });
             },
-          ),
-        ),
-        SizedBox(height: 10),
-        Center(
-          child: ToggleButtons(
             children: <Widget>[
               ElevatedButton(
                 onPressed: () {},
@@ -91,47 +97,41 @@ class OptionsPage extends StatelessWidget {
                   child: Text('test4'),
                 ),
               )
-            ],
+            ]
+          ),
+        ),
+        const SizedBox(height: 10),
+        Center(
+          child: ToggleButtons(
             isSelected: isSelected2,
             onPressed: (int index) {
               (() {
                 isSelected2[index] = !isSelected2[index];
               });
             },
-          ),
-        ),
-        SizedBox(height: 10),
-        Center(
-          child: ToggleButtons(
             children: <Widget>[
               ElevatedButton(
                 onPressed: () {},
                 child: Text('test3'),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: ElevatedButton(
                   onPressed: () {},
                   child: Text('test4'),
                 ),
               ),
-            ],
-            isSelected: isSelected2,
-            onPressed: (int index) {
-              (() {
-                isSelected2[index] = !isSelected2[index];
-              });
-            },
+            ]
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 50,
         ),
-        Text(
+        const Text(
           'Difficulty',
           style: TextStyle(fontSize: 25),
         ),
-        SizedBox(height: 25),
+        const SizedBox(height: 25),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -149,19 +149,19 @@ class OptionsPage extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(height: 80),
+        const SizedBox(height: 80),
         Center(
           child: ElevatedButton(
             onPressed: () {
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => Jogo()));
             },
-            child: Text('Start'),
             style: ElevatedButton.styleFrom(
               foregroundColor: Colors.black,
-              backgroundColor: Color.fromARGB(255, 247, 203, 7),
-              padding: EdgeInsets.symmetric(horizontal: 50),
+              backgroundColor: const Color.fromARGB(255, 247, 203, 7),
+              padding: const EdgeInsets.symmetric(horizontal: 50),
             ),
+            child: const Text('Start'),
           ),
         )
       ]),

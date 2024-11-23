@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:quizmania/pages/home.dart';
-import 'package:quizmania/pages/howplay.dart';
-import 'package:quizmania/pages/options.dart';
-import 'package:quizmania/pages/question.dart';
 
 class Jogo extends StatelessWidget {
   Jogo({super.key});
@@ -10,9 +7,9 @@ class Jogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color.fromARGB(255, 1, 160, 252),
+        backgroundColor: const Color.fromARGB(255, 1, 160, 252),
         appBar: AppBar(
-            backgroundColor: Color.fromARGB(255, 1, 160, 252),
+            backgroundColor: const Color.fromARGB(255, 1, 160, 252),
             leading: IconButton(
               onPressed: () {
                 Navigator.push(context,

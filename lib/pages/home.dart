@@ -8,9 +8,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 2, 120, 254),
+      backgroundColor: const Color.fromARGB(255, 2, 120, 254),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 2, 120, 254),
+        backgroundColor: const Color.fromARGB(255, 2, 120, 254),
         automaticallyImplyLeading: false,
       ),
       body: Center(
@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             SizedBox(
@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
               height: 360,
               child: Image.asset('assets/quiz.png'),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             SizedBox(
@@ -37,14 +37,14 @@ class HomePage extends StatelessWidget {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => OptionsPage()))
                   },
-                  child: const Text('Play'),
                   style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(horizontal: 70),
+                    padding: const EdgeInsets.symmetric(horizontal: 70),
                     foregroundColor: Colors.black,
-                    backgroundColor: Color.fromARGB(255, 247, 203, 7),
+                    backgroundColor: const Color.fromARGB(255, 247, 203, 7),
                   ),
+                  child: const Text('Play'),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 ElevatedButton(
@@ -54,12 +54,12 @@ class HomePage extends StatelessWidget {
                         MaterialPageRoute(
                             builder: (context) => const HowPlay()))
                   },
-                  child: const Text('How to play'),
                   style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(horizontal: 35),
+                    padding: const EdgeInsets.symmetric(horizontal: 35),
                     foregroundColor: Colors.black,
-                    backgroundColor: Color.fromARGB(255, 247, 203, 7),
+                    backgroundColor:const Color.fromARGB(255, 247, 203, 7),
                   ),
+                  child: const Text('How to play'),
                 ),
               ]),
             ),
