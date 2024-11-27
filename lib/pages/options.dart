@@ -1,14 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:quizmania/pages/question.dart';
+import 'package:provider/provider.dart';
+import 'package:quizmania/models/question.dart';
+import 'package:quizmania/pages/quiz.dart';
 import 'package:quizmania/pages/home.dart';
+import 'package:quizmania/providers/quiz_provider.dart';
+import 'package:quizmania/services/open_trivia_api_service.dart';
 
-class OptionsPage extends StatelessWidget {
-  List<bool> isSelected1 = [false, false];
-  List<bool> isSelected2 = [false, false];
+class OptionsPage extends StatefulWidget {
+
   OptionsPage({
     super.key,
   });
+
   Color _buttonColor = Colors.black;
+
+  @override
+  OptionStatefulState createState() => OptionStatefulState();
+}
+
+class OptionStatefulState extends State<OptionsPage>{
+
+  List<bool> isSelected1 = [false, false];
+  List<bool> isSelected2 = [false, false];
+
+  int? _selectedCategoryValue;
+  String? _selectedDifficultyValue;
 
   @override
   Widget build(BuildContext context) {
@@ -40,14 +56,22 @@ class OptionsPage extends StatelessWidget {
             },
             children: <Widget>[
               ElevatedButton(
-                onPressed: () {},
-                child: Text('test1'),
+                onPressed: () {
+                  setState(() {
+                    _selectedCategoryValue = 10;
+                  });
+                },
+                child: const Text('Book'),
               ),
               Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text('test2'),
+                    onPressed: () {
+                      setState(() {
+                        _selectedCategoryValue = 11;
+                      });
+                    },
+                    child: const Text('Film'),
                   ))
             ],
           ),
@@ -63,14 +87,22 @@ class OptionsPage extends StatelessWidget {
             },
             children: <Widget>[
               ElevatedButton(
-                onPressed: () {},
-                child: Text('test'),
+                onPressed: () {
+                  setState(() {
+                    _selectedCategoryValue = 12;
+                  });
+                },
+                child: const Text('Music'),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: ElevatedButton(
-                  onPressed: () {},
-                  child: Text('test2'),
+                  onPressed: () {
+                    setState(() {
+                    _selectedCategoryValue = 14;
+                  });
+                  },
+                  child: const Text('TV'),
                 ),
               )
             ],
@@ -87,14 +119,22 @@ class OptionsPage extends StatelessWidget {
             },
             children: <Widget>[
               ElevatedButton(
-                onPressed: () {},
-                child: Text('test3'),
+                onPressed: () {
+                  setState(() {
+                    _selectedCategoryValue = 15;
+                  });
+                },
+                child: const Text('Games'),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: ElevatedButton(
-                  onPressed: () {},
-                  child: Text('test4'),
+                  onPressed: () {
+                    setState(() {
+                    _selectedCategoryValue = 19;
+                  });
+                  },
+                  child: const Text('Math'),
                 ),
               )
             ]
@@ -111,14 +151,22 @@ class OptionsPage extends StatelessWidget {
             },
             children: <Widget>[
               ElevatedButton(
-                onPressed: () {},
-                child: Text('test3'),
+                onPressed: () {
+                  setState(() {
+                    _selectedCategoryValue = 18;
+                  });
+                },
+                child: const Text('Computers'),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: ElevatedButton(
-                  onPressed: () {},
-                  child: Text('test4'),
+                  onPressed: () {
+                    setState(() {
+                    _selectedCategoryValue = 31;
+                  });
+                  },
+                  child: const Text('Manga'),
                 ),
               ),
             ]
@@ -132,29 +180,48 @@ class OptionsPage extends StatelessWidget {
           style: TextStyle(fontSize: 25),
         ),
         const SizedBox(height: 25),
-        Row(
+         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
+          children: <Widget>[
             ElevatedButton(
-              onPressed: () {},
-              child: Text('test1'),
+              onPressed: () {
+                setState(() {
+                  _selectedDifficultyValue = 'easy';
+                });
+              },
+              child: const Text('Easy'),
             ),
             ElevatedButton(
-              onPressed: () {},
-              child: Text('test2'),
+              onPressed: () {
+                setState(() {
+                  _selectedDifficultyValue = 'medium';
+                });
+              },
+              child: const Text('Medium'),
             ),
             ElevatedButton(
-              onPressed: () {},
-              child: Text('test3'),
+              onPressed: () {
+                setState(() {
+                  _selectedDifficultyValue = 'hard';
+                });
+              },
+              child: const Text('Hard'),
             ),
           ],
-        ),
+        ), 
         const SizedBox(height: 80),
         Center(
           child: ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Jogo()));
+            onPressed: () async {
+              if(_selectedCategoryValue != null && _selectedDifficultyValue != null){
+                var questions = await OpenTriviaApiService()
+                    .fetchQuestions(_selectedCategoryValue!, _selectedDifficultyValue!);
+                Provider.of<QuizProvider>(context, listen: false).setQuestions(questions);
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Quiz()));
+              } else {
+                
+              }
             },
             style: ElevatedButton.styleFrom(
               foregroundColor: Colors.black,

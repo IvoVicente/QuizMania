@@ -4,9 +4,17 @@ import 'package:quizmania/pages/howplay.dart';
 import 'package:quizmania/pages/options.dart';
 import 'package:quizmania/pages/game_over.dart';
 import 'package:quizmania/pages/score.dart';
-import 'package:quizmania/pages/question.dart';
+import 'package:quizmania/pages/quiz.dart';
+import 'package:quizmania/providers/quiz_provider.dart';
+import 'package:provider/provider.dart';
 
-void main() => runApp(const MainApp());
+
+void main() => runApp(
+  ChangeNotifierProvider(
+      create: (context) => QuizProvider(),
+      child: const MainApp(),
+    ),
+  );
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
@@ -27,7 +35,7 @@ class MainApp extends StatelessWidget {
         '/page': (context) => OptionsPage(),
         '/page': (context) => GameOver(),
         //'/page': (context) => Score(),
-        '/page': (context) => Jogo()
+        '/page': (context) => Quiz()
       },
     );
   }

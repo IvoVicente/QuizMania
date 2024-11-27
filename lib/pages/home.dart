@@ -35,7 +35,8 @@ class HomePage extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () => {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => OptionsPage()))
+                        MaterialPageRoute(
+                          builder: (context) => OptionsPage()))
                   },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(horizontal: 70),

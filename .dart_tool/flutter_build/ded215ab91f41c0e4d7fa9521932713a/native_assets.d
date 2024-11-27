@@ -1,0 +1,1 @@
+ C:\\Users\\mathe\\Documents\\GitHub\\QuizMania\\.dart_tool\\flutter_build\\ded215ab91f41c0e4d7fa9521932713a\\native_assets.yaml: 
