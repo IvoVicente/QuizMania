@@ -31,11 +31,11 @@ class MainApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const HomePage(),
-        '/page': (context) => const HowPlay(),
-        '/page': (context) => OptionsPage(),
-        '/page': (context) => GameOver(),
-        //'/page': (context) => Score(),
-        '/page': (context) => Quiz()
+        '/how': (context) => const HowPlay(),
+        '/options': (context) => const OptionsPage(),
+        '/game_over': (context) => const GameOver(),
+        '/score': (context) => const Score(),
+        '/quiz': (context) => const Quiz()
       },
     );
   }

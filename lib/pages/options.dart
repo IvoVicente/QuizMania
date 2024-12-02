@@ -28,14 +28,14 @@ class OptionStatefulState extends State<OptionsPage>{
   int? _selectedCategoryValue;
   String? _selectedDifficultyValue;
 
-  final Color notSelectedForeground  = Colors.black;
-  final Color notSelectedBackground  = const Color.fromARGB(255, 231, 230, 236);
+  final Color notSelectedForeground = Colors.black;
+  final Color notSelectedBackground = const Color.fromARGB(255, 231, 230, 236);
 
-  final Color isSelectedForeground  = Colors.black;
-  final Color isSelectedBackground  = const Color.fromARGB(255, 247, 203, 7);
+  final Color isSelectedForeground = Colors.black;
+  final Color isSelectedBackground = const Color.fromARGB(255, 247, 203, 7);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 1, 160, 252),
       appBar: AppBar(

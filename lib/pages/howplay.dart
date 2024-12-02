@@ -10,6 +10,9 @@ class HowPlay extends StatelessWidget {
       backgroundColor: const Color.fromARGB(255, 1, 160, 252),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 1, 160, 252),
+        title: const Text('How to play',
+              style: TextStyle(fontSize: 20),
+              ),
         leading: IconButton(
           icon: const Icon(
             Icons.home_outlined,
@@ -24,101 +27,120 @@ class HowPlay extends StatelessWidget {
       ),
       body: Center(
         child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const Text(
-                'How to play',
-                style: TextStyle(fontSize: 24),
-              ),
               const SizedBox(
-                height: 60,
+                height: 80,
               ),
-              Row(children: <Widget>[
-                Expanded(
-                    child: Container(
-                  padding: const EdgeInsets.all(20.0),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12.0),
-                  ),
-                  child: const Text(
-                    '1. Select one option',
-                    style: TextStyle(fontSize: 14),
-                  ),
-                ))
-              ]),
-              const SizedBox(
-                height: 24,
-              ),
-              Row(children: <Widget>[
-                Expanded(
-                    child: Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12.0),
-                  ),
-                  child: const Text(
-                    '2. Click “Confim”',
-                    style: TextStyle(fontSize: 14),
-                  ),
-                )),
-              ]),
-              const SizedBox(
-                height: 24,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                      child: Container(
-                    padding: const EdgeInsets.all(20.0),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12.0),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  children: <Widget>[
+                    Row( children: <Widget>[
+                        Expanded(
+                          child: Container(
+                            padding: const EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            child: const Text(
+                              '1. Select one option',
+                              style: TextStyle(fontSize: 14),
+                            ),
+                          )
+                        ),
+                      ],
                     ),
-                    child: const Text(
-                      '3. If you run out of time you lose',
-                      style: TextStyle(fontSize: 14),
+
+                    const SizedBox(
+                      height: 15,
                     ),
-                  ))
-                ],
-              ),
-              const SizedBox(
-                height: 24,
-              ),
-              Row(children: <Widget>[
-                Expanded(
-                    child: Container(
-                  padding: const EdgeInsets.all(20.0),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12.0),
-                  ),
-                  child: const Text(
-                    '4. Skip the questions 3 times if you need',
-                    style: TextStyle(fontSize: 14),
-                  ),
-                ))
-              ]),
-              const SizedBox(
-                height: 24,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                      child: Container(
-                    padding: const EdgeInsets.all(20.0),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12.0),
+
+                    Row( children: <Widget>[
+                        Expanded(
+                          child: Container(
+                            padding: const EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            child: const Text(
+                              '2. Click “Confim”',
+                              style: TextStyle(fontSize: 14),
+                            ),
+                          )
+                        ),
+                      ],
                     ),
-                    child: const Text(
-                      '5. Good luck and have some fun! :)',
-                      style: TextStyle(fontSize: 14),
+                    
+                    const SizedBox(
+                      height: 15,
                     ),
-                  ))
-                ],
+
+                    Row( children: <Widget>[
+                        Expanded(
+                          child: Container(
+                            padding: const EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            child: const Text(
+                              '3. If you run out of time you lose',
+                              style: TextStyle(fontSize: 14),
+                            ),
+                          )
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(
+                      height: 15,
+                    ),
+
+                    Row( children: <Widget>[
+                        Expanded(
+                          child: Container(
+                            padding: const EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            child: const Text(
+                              '4. Skip the questions 3 times if you need',
+                              style: TextStyle(fontSize: 14),
+                            ),
+                          )
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(
+                      height: 15,
+                    ),
+
+                    Row( children: <Widget>[
+                        Expanded(
+                          child: Container(
+                            padding: const EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            child: const Text(
+                              '5. Good luck and have some fun! :)',
+                              style: TextStyle(fontSize: 14),
+                            ),
+                          )
+                        ),
+                      ],
+                    ),
+                    
+                    ]
+                )
               ),
             ]),
       ),

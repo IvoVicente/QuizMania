@@ -20,51 +20,6 @@ class OpenTriviaApiService {
       print(response.body);
       if(response.statusCode == 200){
         print('reponse funcionou');
-        /* var data = json.decode(response.body);
-
-        print('O result é: ${data['results']}');
-
-        List<dynamic> results = data['results'];
-
-        print('Result convertido: $results');
-
-        print(results[1]['type']);
-        print(results.length);
-
-        List<Question> questions = [];
-
-        for (int i=0; i < results.length; i++){
-          print(results[i]);
-
-          var item = results[i];
-          String type = '${item['type']}';
-          print('Tipo: ${item['type']}');
-          String difficulty = '${item['difficulty']}';
-          print('Dificuldade: ${item['difficulty']}');
-          String category = '${item['category']}';
-          print('Categoria: ${item['category']}');
-          String question = '${item['question']}';
-          print('Questão: ${item['question']}');
-          String correctAnswer = 'Resposta correta: ${item['correct_answer']}';
-          List<dynamic> incorrectAnswers = List<dynamic>.from(item['incorrect_answers']);
-
-          questions.add(
-            Question(
-              type: type,
-              difficulty: difficulty,
-              category: category,
-              question: question,
-              correctAnswer: correctAnswer,
-              incorrectAnswers: incorrectAnswers
-            )
-          );
-        }
-
-        for (var question in questions){
-          print(question);
-        }
-
-        return questions; */
         return _parseQuestions(response.body);
       } else {
         throw Exception('Dados não encontrados. Status: ${response.statusCode}');
@@ -89,12 +44,8 @@ class OpenTriviaApiService {
       );
     }).toList();
 
-    /* for (var question in questions) {
-      print('A questão ${question} .incorrectAnswers.length');
-    } */
-
    for (int i = 0; i < questions.length; i++){
-    print('A questão ${i} tem ${questions[i].incorrectAnswers.length} respostas incorretas');
+    print('A questão $i tem ${questions[i].incorrectAnswers.length} respostas incorretas');
    }
 
     return questions;

@@ -1,7 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:quizmania/pages/game_over.dart';
-import 'package:quizmania/pages/home.dart';
 import 'package:quizmania/pages/score.dart';
 import 'package:quizmania/providers/quiz_provider.dart';
 import 'package:provider/provider.dart';
@@ -15,33 +15,65 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz>{
-
   List<bool> answers = [false, false, false, false];
-    int? selectedAnswerIndex;
+  int? selectedAnswerIndex;
 
-    final Color notSelectedForeground  = Colors.black;
-    final Color notSelectedBackground  = const Color.fromARGB(255, 231, 230, 236);
+  final Color notSelectedForeground  = Colors.black;
+  final Color notSelectedBackground  = const Color.fromARGB(255, 231, 230, 236);
 
-    final Color isSelectedForeground  = Colors.black;
-    final Color isSelectedBackground  = const Color.fromARGB(255, 247, 203, 7);
+  final Color isSelectedForeground  = Colors.black;
+  final Color isSelectedBackground  = const Color.fromARGB(255, 247, 203, 7);
 
-    bool isMultiple(String questionType){
-      if(questionType == 'multiple'){
-        return true;
-      }
-      return false;
+  bool isMultiple(String questionType){
+    if(questionType == 'multiple'){
+      return true;
     }
+    return false;
+  }
+
+  int seconds = 30;
+  Timer? timer;
+
+  @override
+  void initState() {
+    super.initState();
+    startTimer();
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
+
+  void startTimer(){
+    timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      setState(() {
+        seconds--;
+      });
+      if(seconds == 0){
+        if(context.mounted){
+          Navigator.push( context,
+          MaterialPageRoute(
+            builder: (context) => const GameOver()
+            )
+          );
+        }
+      }
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 1, 160, 252),
         appBar: AppBar(
             backgroundColor: const Color.fromARGB(255, 1, 160, 252),
             leading: IconButton(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const HomePage()));
+                Navigator.popUntil(context, ModalRoute.withName('/'));
               },
               icon: const Icon(Icons.home_outlined),
               iconSize: 40.0,
@@ -60,7 +92,7 @@ class _QuizState extends State<Quiz>{
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
+                        color: Colors.grey.withOpacity(0.3),
                         spreadRadius: 5,
                         blurRadius: 7,
                         offset: const Offset(0, 3),
@@ -85,29 +117,7 @@ class _QuizState extends State<Quiz>{
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
-                    child: CountdownTimer(
-                      endTime: DateTime.now().millisecondsSinceEpoch + 1000 * 30,
-                      onEnd: () => {
-                        if(context.mounted){
-                          Navigator.push( context,
-                          MaterialPageRoute(
-                            builder: (context) => const GameOver()
-                            )
-                          )
-                        }
-                      },
-                      widgetBuilder: (_, time){
-                        if (time == null) {
-                          return const Text(
-                            '0',
-                            style: TextStyle(fontSize: 24),
-                          );
-                        }
-                        return Text('${time.sec}',
-                          textAlign: TextAlign.right,
-                          style: const TextStyle(fontSize: 20));
-                      },
-                    )
+                    child: time()
                   ) 
                 ],
               ),
@@ -250,7 +260,7 @@ class _QuizState extends State<Quiz>{
                     SizedBox(
                       width: 200,
                       child: Column(
-                        children: [true ?
+                        children: [answers.contains(true) ?
                           ElevatedButton(
                             onPressed: () {
                               var provider = Provider.of<QuizProvider>(context, listen: false);
@@ -279,11 +289,11 @@ class _QuizState extends State<Quiz>{
                                 );
                               }
                             },                            
-                                style: ElevatedButton.styleFrom(
-                                foregroundColor: Colors.black,
-                                backgroundColor:const Color.fromARGB(255, 247, 203, 7),
-                                padding: const EdgeInsets.symmetric(horizontal: 70)),
-                                child: const Text('Confirm'),
+                            style: ElevatedButton.styleFrom(
+                            foregroundColor: Colors.black,
+                            backgroundColor:const Color.fromARGB(255, 247, 203, 7),
+                            padding: const EdgeInsets.symmetric(horizontal: 70)),
+                            child: const Text('Confirm'),
                           ) : const Text('')
                         ],
                       ),
@@ -295,5 +305,11 @@ class _QuizState extends State<Quiz>{
           )
       )
     );
+  }
+
+  Widget time(){
+    return Text('$seconds',
+    textAlign: TextAlign.right,
+    style: const TextStyle(fontSize: 20));
   }
 }
