@@ -44,6 +44,12 @@
       "languageVersion": "3.3"
     },
     {
+      "name": "flutter_countdown_timer",
+      "rootUri": "file:///C:/Users/mathe/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_countdown_timer-4.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_lints",
       "rootUri": "file:///C:/Users/mathe/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-2.0.3",
       "packageUri": "lib/",
@@ -200,7 +206,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2024-11-23T18:53:17.381164Z",
+  "generated": "2024-11-27T17:25:25.427551Z",
   "generator": "pub",
   "generatorVersion": "3.5.0",
   "flutterRoot": "file:///C:/Users/mathe/dev/flutter",

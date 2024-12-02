@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizmania/pages/score.dart';
 
 class GameOver extends StatelessWidget {
   const GameOver({super.key});
@@ -6,9 +7,10 @@ class GameOver extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 2, 120, 254),
+      backgroundColor: const Color.fromARGB(255, 2, 120, 254),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 2, 120, 254),
+        backgroundColor:const  Color.fromARGB(255, 2, 120, 254),
+        automaticallyImplyLeading: false,
       ),
       body: Center(
         child: Column(
@@ -20,19 +22,25 @@ class GameOver extends StatelessWidget {
               height: 360,
               child: Image.asset('assets/gameOver.png'),
             ),
-            ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 60, minWidth: 50),
-              child: ElevatedButton.icon(
-                label: Text(''),
-                icon: Icon(Icons.arrow_forward),
-                onPressed: () => {},
+            Column(
+              children: [ElevatedButton.icon(
+                label: const Text(''),
+                icon: const Icon(Icons.arrow_forward, size: 30),
+                onPressed: () => {
+                  Navigator.push( context,
+                    MaterialPageRoute(
+                      builder: (context) => const Score()
+                      )
+                    )
+                },
                 style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(horizontal: 70),
                   foregroundColor: Colors.black,
-                  backgroundColor: Color.fromARGB(255, 247, 203, 7),
+                  backgroundColor: const Color.fromARGB(255, 247, 203, 7),
                 ),
-              ),
+              )],
             ),
-            SizedBox(
+            const SizedBox(
               height: 200,
             )
           ],

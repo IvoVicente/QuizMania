@@ -8,23 +8,31 @@ import 'package:quizmania/services/open_trivia_api_service.dart';
 
 class OptionsPage extends StatefulWidget {
 
-  OptionsPage({
+ const OptionsPage({
     super.key,
   });
-
-  Color _buttonColor = Colors.black;
 
   @override
   OptionStatefulState createState() => OptionStatefulState();
 }
 
 class OptionStatefulState extends State<OptionsPage>{
+  List<Question> questions = [];
 
   List<bool> isSelected1 = [false, false];
   List<bool> isSelected2 = [false, false];
 
+  List<bool> isSelectedDifficulty = [false, false, false];
+  List<bool> isSelectedCategory = [false, false, false, false, false, false, false, false];
+
   int? _selectedCategoryValue;
   String? _selectedDifficultyValue;
+
+  final Color notSelectedForeground  = Colors.black;
+  final Color notSelectedBackground  = const Color.fromARGB(255, 231, 230, 236);
+
+  final Color isSelectedForeground  = Colors.black;
+  final Color isSelectedBackground  = const Color.fromARGB(255, 247, 203, 7);
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +52,11 @@ class OptionStatefulState extends State<OptionsPage>{
       body: ListView(padding: const EdgeInsets.all(16.0), children: [
         const Text(
           'Category',
-          style: TextStyle(fontSize: 25),
+          style: TextStyle(fontSize: 20),
         ),
+
+        const SizedBox(height: 25),
+        
         Center(
           child: ToggleButtons(
             isSelected: isSelected1,
@@ -57,20 +68,58 @@ class OptionStatefulState extends State<OptionsPage>{
             children: <Widget>[
               ElevatedButton(
                 onPressed: () {
-                  setState(() {
-                    _selectedCategoryValue = 10;
-                  });
-                },
+                setState(() {
+                  if (isSelectedCategory.contains(true)){
+                    isSelectedCategory[1] = false;
+                    isSelectedCategory[2] = false;
+                    isSelectedCategory[3] = false;
+                    isSelectedCategory[4] = false;
+                    isSelectedCategory[5] = false;
+                    isSelectedCategory[6] = false;
+                    isSelectedCategory[7] = false;
+                  }
+                  isSelectedCategory[0] = true;
+                  _selectedCategoryValue = 10;
+                });
+              },
+              style: isSelectedCategory[0] ?
+              ElevatedButton.styleFrom(
+              foregroundColor: isSelectedForeground,
+              backgroundColor: isSelectedBackground
+              ) :
+              ElevatedButton.styleFrom(
+              foregroundColor: notSelectedForeground,
+              backgroundColor: notSelectedBackground
+              ),
                 child: const Text('Book'),
               ),
               Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        _selectedCategoryValue = 11;
-                      });
-                    },
+                      onPressed: () {
+                setState(() {
+                  if (isSelectedCategory.contains(true)){
+                    isSelectedCategory[0] = false;
+                    isSelectedCategory[2] = false;
+                    isSelectedCategory[3] = false;
+                    isSelectedCategory[4] = false;
+                    isSelectedCategory[5] = false;
+                    isSelectedCategory[6] = false;
+                    isSelectedCategory[7] = false;
+                  }
+                  isSelectedCategory[1] = true;
+                  _selectedCategoryValue = 11;
+                });
+              },
+              style: isSelectedCategory[1] ?
+              ElevatedButton.styleFrom(
+              foregroundColor: isSelectedForeground,
+              backgroundColor: isSelectedBackground
+              ) :
+              ElevatedButton.styleFrom(
+              foregroundColor: notSelectedForeground,
+              backgroundColor: notSelectedBackground
+              ),
                     child: const Text('Film'),
                   ))
             ],
@@ -87,21 +136,59 @@ class OptionStatefulState extends State<OptionsPage>{
             },
             children: <Widget>[
               ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    _selectedCategoryValue = 12;
-                  });
-                },
+                  onPressed: () {
+                setState(() {
+                  if (isSelectedCategory.contains(true)){
+                    isSelectedCategory[0] = false;
+                    isSelectedCategory[1] = false;
+                    isSelectedCategory[3] = false;
+                    isSelectedCategory[4] = false;
+                    isSelectedCategory[5] = false;
+                    isSelectedCategory[6] = false;
+                    isSelectedCategory[7] = false;
+                  }
+                  isSelectedCategory[2] = true;
+                  _selectedCategoryValue = 12;
+                });
+              },
+              style: isSelectedCategory[2] ?
+              ElevatedButton.styleFrom(
+              foregroundColor: isSelectedForeground,
+              backgroundColor: isSelectedBackground
+              ) :
+              ElevatedButton.styleFrom(
+              foregroundColor: notSelectedForeground,
+              backgroundColor: notSelectedBackground
+              ),
                 child: const Text('Music'),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                    _selectedCategoryValue = 14;
-                  });
-                  },
+                    onPressed: () {
+                setState(() {
+                  if (isSelectedCategory.contains(true)){
+                    isSelectedCategory[0] = false;
+                    isSelectedCategory[1] = false;
+                    isSelectedCategory[2] = false;
+                    isSelectedCategory[4] = false;
+                    isSelectedCategory[5] = false;
+                    isSelectedCategory[6] = false;
+                    isSelectedCategory[7] = false;
+                  }
+                  isSelectedCategory[3] = true;
+                  _selectedCategoryValue = 14;
+                });
+              },
+              style: isSelectedCategory[3] ?
+              ElevatedButton.styleFrom(
+              foregroundColor: isSelectedForeground,
+              backgroundColor: isSelectedBackground
+              ) :
+              ElevatedButton.styleFrom(
+              foregroundColor: notSelectedForeground,
+              backgroundColor: notSelectedBackground
+              ),
                   child: const Text('TV'),
                 ),
               )
@@ -119,21 +206,59 @@ class OptionStatefulState extends State<OptionsPage>{
             },
             children: <Widget>[
               ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    _selectedCategoryValue = 15;
-                  });
-                },
+                  onPressed: () {
+                setState(() {
+                  if (isSelectedCategory.contains(true)){
+                    isSelectedCategory[0] = false;
+                    isSelectedCategory[1] = false;
+                    isSelectedCategory[2] = false;
+                    isSelectedCategory[3] = false;
+                    isSelectedCategory[5] = false;
+                    isSelectedCategory[6] = false;
+                    isSelectedCategory[7] = false;
+                  }
+                  isSelectedCategory[4] = true;
+                  _selectedCategoryValue = 15;
+                });
+              },
+              style: isSelectedCategory[4] ?
+              ElevatedButton.styleFrom(
+              foregroundColor: isSelectedForeground,
+              backgroundColor: isSelectedBackground
+              ) :
+              ElevatedButton.styleFrom(
+              foregroundColor: notSelectedForeground,
+              backgroundColor: notSelectedBackground
+              ),
                 child: const Text('Games'),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                    _selectedCategoryValue = 19;
-                  });
-                  },
+                    onPressed: () {
+                setState(() {
+                  if (isSelectedCategory.contains(true)){
+                    isSelectedCategory[0] = false;
+                    isSelectedCategory[1] = false;
+                    isSelectedCategory[2] = false;
+                    isSelectedCategory[3] = false;
+                    isSelectedCategory[4] = false;
+                    isSelectedCategory[6] = false;
+                    isSelectedCategory[7] = false;
+                  }
+                  isSelectedCategory[5] = true;
+                  _selectedCategoryValue = 19;
+                });
+              },
+              style: isSelectedCategory[5] ?
+              ElevatedButton.styleFrom(
+              foregroundColor: isSelectedForeground,
+              backgroundColor: isSelectedBackground
+              ) :
+              ElevatedButton.styleFrom(
+              foregroundColor: notSelectedForeground,
+              backgroundColor: notSelectedBackground
+              ),
                   child: const Text('Math'),
                 ),
               )
@@ -151,21 +276,58 @@ class OptionStatefulState extends State<OptionsPage>{
             },
             children: <Widget>[
               ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    _selectedCategoryValue = 18;
-                  });
-                },
-                child: const Text('Computers'),
+                  onPressed: () {
+                setState(() {
+                  if (isSelectedCategory.contains(true)){
+                    isSelectedCategory[1] = false;
+                    isSelectedCategory[2] = false;
+                    isSelectedCategory[3] = false;
+                    isSelectedCategory[4] = false;
+                    isSelectedCategory[5] = false;
+                    isSelectedCategory[0] = false;
+                    isSelectedCategory[7] = false;
+                  }
+                  isSelectedCategory[6] = true;
+                  _selectedCategoryValue = 18;
+                });
+              },
+              style: isSelectedCategory[6] ?
+              ElevatedButton.styleFrom(
+              foregroundColor: isSelectedForeground,
+              backgroundColor: isSelectedBackground
+              ) :
+              ElevatedButton.styleFrom(
+              foregroundColor: notSelectedForeground,
+              backgroundColor: notSelectedBackground
               ),
-              Padding(
+                child: const Text('Computers'),
+              ),              Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                    _selectedCategoryValue = 31;
-                  });
-                  },
+                    onPressed: () {
+                setState(() {
+                  if (isSelectedCategory.contains(true)){
+                    isSelectedCategory[1] = false;
+                    isSelectedCategory[2] = false;
+                    isSelectedCategory[3] = false;
+                    isSelectedCategory[4] = false;
+                    isSelectedCategory[5] = false;
+                    isSelectedCategory[6] = false;
+                    isSelectedCategory[0] = false;
+                  }
+                  isSelectedCategory[7] = true;
+                  _selectedCategoryValue = 31;
+                });
+              },
+              style: isSelectedCategory[7] ?
+              ElevatedButton.styleFrom(
+              foregroundColor: isSelectedForeground,
+              backgroundColor: isSelectedBackground
+              ) :
+              ElevatedButton.styleFrom(
+              foregroundColor: notSelectedForeground,
+              backgroundColor: notSelectedBackground
+              ),
                   child: const Text('Manga'),
                 ),
               ),
@@ -177,34 +339,78 @@ class OptionStatefulState extends State<OptionsPage>{
         ),
         const Text(
           'Difficulty',
-          style: TextStyle(fontSize: 25),
+          style: TextStyle(fontSize: 20),
         ),
+
         const SizedBox(height: 25),
+        
          Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             ElevatedButton(
               onPressed: () {
                 setState(() {
+                  if (isSelectedDifficulty.contains(true)){
+                    isSelectedDifficulty[1] = false;
+                    isSelectedDifficulty[2] = false;
+                  }
+                  isSelectedDifficulty[0] = true;
                   _selectedDifficultyValue = 'easy';
                 });
               },
+              style: isSelectedDifficulty[0] ?
+              ElevatedButton.styleFrom(
+              foregroundColor: isSelectedForeground,
+              backgroundColor: isSelectedBackground
+              ) :
+              ElevatedButton.styleFrom(
+              foregroundColor: notSelectedForeground,
+              backgroundColor: notSelectedBackground
+              ),
               child: const Text('Easy'),
             ),
             ElevatedButton(
               onPressed: () {
                 setState(() {
+                  if (isSelectedDifficulty.contains(true)){
+                    isSelectedDifficulty[0] = false;
+                    isSelectedDifficulty[2] = false;
+                  }
+                  isSelectedDifficulty[1] = true;
                   _selectedDifficultyValue = 'medium';
                 });
               },
+              style: isSelectedDifficulty[1] ?
+              ElevatedButton.styleFrom(
+              foregroundColor: isSelectedForeground,
+              backgroundColor: isSelectedBackground
+              ) :
+              ElevatedButton.styleFrom(
+              foregroundColor: notSelectedForeground,
+              backgroundColor: notSelectedBackground
+              ),
               child: const Text('Medium'),
             ),
             ElevatedButton(
               onPressed: () {
                 setState(() {
+                  if (isSelectedDifficulty.contains(true)){
+                    isSelectedDifficulty[0] = false;
+                    isSelectedDifficulty[1] = false;
+                  }
+                  isSelectedDifficulty[2] = true;
                   _selectedDifficultyValue = 'hard';
                 });
               },
+              style: isSelectedDifficulty[2] ?
+              ElevatedButton.styleFrom(
+              foregroundColor: isSelectedForeground,
+              backgroundColor: isSelectedBackground
+              ) :
+              ElevatedButton.styleFrom(
+              foregroundColor: notSelectedForeground,
+              backgroundColor: notSelectedBackground
+              ),
               child: const Text('Hard'),
             ),
           ],
@@ -213,14 +419,17 @@ class OptionStatefulState extends State<OptionsPage>{
         Center(
           child: ElevatedButton(
             onPressed: () async {
-              if(_selectedCategoryValue != null && _selectedDifficultyValue != null){
-                var questions = await OpenTriviaApiService()
-                    .fetchQuestions(_selectedCategoryValue!, _selectedDifficultyValue!);
-                Provider.of<QuizProvider>(context, listen: false).setQuestions(questions);
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Quiz()));
-              } else {
-                
+                if(_selectedCategoryValue != null && _selectedDifficultyValue != null){
+                var apiService = OpenTriviaApiService();
+                questions = await apiService.fetchQuestions(
+                  _selectedCategoryValue!,
+                  _selectedDifficultyValue!
+                );
+                }
+              if(context.mounted){
+                Provider.of<QuizProvider>(context, listen: false).updateQuestions(questions);
+                print('O tamanho da list é: ${questions.length}');
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const Quiz()));
               }
             },
             style: ElevatedButton.styleFrom(

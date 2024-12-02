@@ -4,7 +4,7 @@ class Question {
   final String category;
   final String question;
   final String correctAnswer;
-  final List<String> incorrectAnswers;
+  final List<dynamic> incorrectAnswers;
 
   const Question({
     required this.type,
