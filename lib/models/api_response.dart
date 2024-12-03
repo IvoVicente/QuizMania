@@ -9,12 +9,12 @@ class ApiResponse {
     required this.results,
   });
 
-  factory ApiResponse.fromJson(Map<String, dynamic> json) {
+  /* factory ApiResponse.fromJson(Map<String, dynamic> json) {
     return ApiResponse(
       responseCode: json['response_code'] as int,
       results: (json['results'] as List)
           .map((item) => Question.fromJson(item as Map<String, dynamic>))
           .toList(),
     );
-  }
+  } */
 }

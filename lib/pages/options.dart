@@ -56,85 +56,90 @@ class OptionStatefulState extends State<OptionsPage>{
         ),
 
         const SizedBox(height: 25),
+
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Expanded( child: ElevatedButton(
+              onPressed: () {
+              setState(() {
+                if (isSelectedCategory.contains(true)){
+                  isSelectedCategory[1] = false;
+                  isSelectedCategory[2] = false;
+                  isSelectedCategory[3] = false;
+                  isSelectedCategory[4] = false;
+                  isSelectedCategory[5] = false;
+                  isSelectedCategory[6] = false;
+                  isSelectedCategory[7] = false;
+                }
+                isSelectedCategory[0] = true;
+                _selectedCategoryValue = 10;
+              });
+            },
+            style: isSelectedCategory[0] ?
+            ElevatedButton.styleFrom(
+            foregroundColor: isSelectedForeground,
+            backgroundColor: isSelectedBackground,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10)
+            )
+            ) :
+            ElevatedButton.styleFrom(
+            foregroundColor: notSelectedForeground,
+            backgroundColor: notSelectedBackground,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10)
+            )
+            ),
+              child: const Text('Book'),
+            )
+            ),
+
+            const SizedBox(width: 15),
+
+            Expanded(
+              child: ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        if (isSelectedCategory.contains(true)){
+                          isSelectedCategory[0] = false;
+                          isSelectedCategory[2] = false;
+                          isSelectedCategory[3] = false;
+                          isSelectedCategory[4] = false;
+                          isSelectedCategory[5] = false;
+                          isSelectedCategory[6] = false;
+                          isSelectedCategory[7] = false;
+                        }
+                        isSelectedCategory[1] = true;
+                        _selectedCategoryValue = 11;
+                      });
+                    },
+                    style: isSelectedCategory[1] ?
+                    ElevatedButton.styleFrom(
+                    foregroundColor: isSelectedForeground,
+                    backgroundColor: isSelectedBackground,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)
+                    )
+                    ) :
+                    ElevatedButton.styleFrom(
+                    foregroundColor: notSelectedForeground,
+                    backgroundColor: notSelectedBackground,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)
+                    )
+                    ),
+                    child: const Text('Film'))
+              )
+          ],
+        ),
+
+        const SizedBox(height: 10),
         
         Center(
-          child: ToggleButtons(
-            isSelected: isSelected1,
-            onPressed: (int index) {
-              (() {
-                isSelected1[index] = !isSelected1[index];
-              });
-            },
+          child: Row(
             children: <Widget>[
-              ElevatedButton(
-                onPressed: () {
-                setState(() {
-                  if (isSelectedCategory.contains(true)){
-                    isSelectedCategory[1] = false;
-                    isSelectedCategory[2] = false;
-                    isSelectedCategory[3] = false;
-                    isSelectedCategory[4] = false;
-                    isSelectedCategory[5] = false;
-                    isSelectedCategory[6] = false;
-                    isSelectedCategory[7] = false;
-                  }
-                  isSelectedCategory[0] = true;
-                  _selectedCategoryValue = 10;
-                });
-              },
-              style: isSelectedCategory[0] ?
-              ElevatedButton.styleFrom(
-              foregroundColor: isSelectedForeground,
-              backgroundColor: isSelectedBackground
-              ) :
-              ElevatedButton.styleFrom(
-              foregroundColor: notSelectedForeground,
-              backgroundColor: notSelectedBackground
-              ),
-                child: const Text('Book'),
-              ),
-              Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: ElevatedButton(
-                      onPressed: () {
-                setState(() {
-                  if (isSelectedCategory.contains(true)){
-                    isSelectedCategory[0] = false;
-                    isSelectedCategory[2] = false;
-                    isSelectedCategory[3] = false;
-                    isSelectedCategory[4] = false;
-                    isSelectedCategory[5] = false;
-                    isSelectedCategory[6] = false;
-                    isSelectedCategory[7] = false;
-                  }
-                  isSelectedCategory[1] = true;
-                  _selectedCategoryValue = 11;
-                });
-              },
-              style: isSelectedCategory[1] ?
-              ElevatedButton.styleFrom(
-              foregroundColor: isSelectedForeground,
-              backgroundColor: isSelectedBackground
-              ) :
-              ElevatedButton.styleFrom(
-              foregroundColor: notSelectedForeground,
-              backgroundColor: notSelectedBackground
-              ),
-                    child: const Text('Film'),
-                  ))
-            ],
-          ),
-        ),
-        const SizedBox(height: 10),
-        Center(
-          child: ToggleButtons(
-            isSelected: isSelected2,
-            onPressed: (int index) {
-              (() {
-                isSelected2[index] = !isSelected2[index];
-              });
-            },
-            children: <Widget>[
+              Expanded( child:
               ElevatedButton(
                   onPressed: () {
                 setState(() {
@@ -154,16 +159,25 @@ class OptionStatefulState extends State<OptionsPage>{
               style: isSelectedCategory[2] ?
               ElevatedButton.styleFrom(
               foregroundColor: isSelectedForeground,
-              backgroundColor: isSelectedBackground
+              backgroundColor: isSelectedBackground,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)
+              )
               ) :
               ElevatedButton.styleFrom(
               foregroundColor: notSelectedForeground,
-              backgroundColor: notSelectedBackground
+              backgroundColor: notSelectedBackground,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)
+              )
               ),
                 child: const Text('Music'),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
+              ),
+
+              const SizedBox(width: 15),
+
+              Expanded(
                 child: ElevatedButton(
                     onPressed: () {
                 setState(() {
@@ -183,11 +197,17 @@ class OptionStatefulState extends State<OptionsPage>{
               style: isSelectedCategory[3] ?
               ElevatedButton.styleFrom(
               foregroundColor: isSelectedForeground,
-              backgroundColor: isSelectedBackground
+              backgroundColor: isSelectedBackground,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)
+              )
               ) :
               ElevatedButton.styleFrom(
               foregroundColor: notSelectedForeground,
-              backgroundColor: notSelectedBackground
+              backgroundColor: notSelectedBackground,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)
+              )
               ),
                   child: const Text('TV'),
                 ),
@@ -195,16 +215,14 @@ class OptionStatefulState extends State<OptionsPage>{
             ],
           ),
         ),
+        
         const SizedBox(height: 10),
+
         Center(
-          child: ToggleButtons(
-            isSelected: isSelected2,
-            onPressed: (int index) {
-              (() {
-                isSelected2[index] = !isSelected2[index];
-              });
-            },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
+              Expanded( child:
               ElevatedButton(
                   onPressed: () {
                 setState(() {
@@ -224,16 +242,25 @@ class OptionStatefulState extends State<OptionsPage>{
               style: isSelectedCategory[4] ?
               ElevatedButton.styleFrom(
               foregroundColor: isSelectedForeground,
-              backgroundColor: isSelectedBackground
+              backgroundColor: isSelectedBackground,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)
+              )
               ) :
               ElevatedButton.styleFrom(
               foregroundColor: notSelectedForeground,
-              backgroundColor: notSelectedBackground
+              backgroundColor: notSelectedBackground,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)
+              )
               ),
                 child: const Text('Games'),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
+              ),
+
+              const SizedBox(width: 15,),
+
+              Expanded(
                 child: ElevatedButton(
                     onPressed: () {
                 setState(() {
@@ -253,11 +280,17 @@ class OptionStatefulState extends State<OptionsPage>{
               style: isSelectedCategory[5] ?
               ElevatedButton.styleFrom(
               foregroundColor: isSelectedForeground,
-              backgroundColor: isSelectedBackground
+              backgroundColor: isSelectedBackground,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)
+              )
               ) :
               ElevatedButton.styleFrom(
               foregroundColor: notSelectedForeground,
-              backgroundColor: notSelectedBackground
+              backgroundColor: notSelectedBackground,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)
+              )
               ),
                   child: const Text('Math'),
                 ),
@@ -266,16 +299,12 @@ class OptionStatefulState extends State<OptionsPage>{
           ),
         ),
         const SizedBox(height: 10),
+
         Center(
-          child: ToggleButtons(
-            isSelected: isSelected2,
-            onPressed: (int index) {
-              (() {
-                isSelected2[index] = !isSelected2[index];
-              });
-            },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              ElevatedButton(
+              Expanded( child: ElevatedButton(
                   onPressed: () {
                 setState(() {
                   if (isSelectedCategory.contains(true)){
@@ -294,15 +323,25 @@ class OptionStatefulState extends State<OptionsPage>{
               style: isSelectedCategory[6] ?
               ElevatedButton.styleFrom(
               foregroundColor: isSelectedForeground,
-              backgroundColor: isSelectedBackground
+              backgroundColor: isSelectedBackground,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)
+              )
               ) :
               ElevatedButton.styleFrom(
               foregroundColor: notSelectedForeground,
-              backgroundColor: notSelectedBackground
+              backgroundColor: notSelectedBackground,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)
+              )
               ),
                 child: const Text('Computers'),
-              ),              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
+              ),
+              ),
+
+              const SizedBox(width: 15),
+              
+              Expanded(
                 child: ElevatedButton(
                     onPressed: () {
                 setState(() {
@@ -322,11 +361,17 @@ class OptionStatefulState extends State<OptionsPage>{
               style: isSelectedCategory[7] ?
               ElevatedButton.styleFrom(
               foregroundColor: isSelectedForeground,
-              backgroundColor: isSelectedBackground
+              backgroundColor: isSelectedBackground,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)
+              )
               ) :
               ElevatedButton.styleFrom(
               foregroundColor: notSelectedForeground,
-              backgroundColor: notSelectedBackground
+              backgroundColor: notSelectedBackground,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)
+              )
               ),
                   child: const Text('Manga'),
                 ),
@@ -334,9 +379,10 @@ class OptionStatefulState extends State<OptionsPage>{
             ]
           ),
         ),
-        const SizedBox(
-          height: 50,
-        ),
+
+
+        const SizedBox(height: 50),
+
         const Text(
           'Difficulty',
           style: TextStyle(fontSize: 20),
@@ -361,11 +407,17 @@ class OptionStatefulState extends State<OptionsPage>{
               style: isSelectedDifficulty[0] ?
               ElevatedButton.styleFrom(
               foregroundColor: isSelectedForeground,
-              backgroundColor: isSelectedBackground
+              backgroundColor: isSelectedBackground,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)
+              )
               ) :
               ElevatedButton.styleFrom(
               foregroundColor: notSelectedForeground,
-              backgroundColor: notSelectedBackground
+              backgroundColor: notSelectedBackground,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)
+              )
               ),
               child: const Text('Easy'),
             ),
@@ -383,11 +435,17 @@ class OptionStatefulState extends State<OptionsPage>{
               style: isSelectedDifficulty[1] ?
               ElevatedButton.styleFrom(
               foregroundColor: isSelectedForeground,
-              backgroundColor: isSelectedBackground
+              backgroundColor: isSelectedBackground,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)
+              )
               ) :
               ElevatedButton.styleFrom(
               foregroundColor: notSelectedForeground,
-              backgroundColor: notSelectedBackground
+              backgroundColor: notSelectedBackground,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)
+              )
               ),
               child: const Text('Medium'),
             ),
@@ -405,11 +463,17 @@ class OptionStatefulState extends State<OptionsPage>{
               style: isSelectedDifficulty[2] ?
               ElevatedButton.styleFrom(
               foregroundColor: isSelectedForeground,
-              backgroundColor: isSelectedBackground
+              backgroundColor: isSelectedBackground,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)
+              )
               ) :
               ElevatedButton.styleFrom(
               foregroundColor: notSelectedForeground,
-              backgroundColor: notSelectedBackground
+              backgroundColor: notSelectedBackground,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)
+              )
               ),
               child: const Text('Hard'),
             ),

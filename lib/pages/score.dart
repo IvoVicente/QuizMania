@@ -49,8 +49,9 @@ class Score extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           IconButton(
-                            onPressed: () => {
-                              Navigator.popUntil(context, ModalRoute.withName('/'))
+                            onPressed: () {
+                              Provider.of<QuizProvider>(context, listen: false).resetScore();
+                              Navigator.popUntil(context, ModalRoute.withName('/'));
                             },
                             icon: const Icon(
                               Icons.home_outlined,
@@ -61,9 +62,10 @@ class Score extends StatelessWidget {
                             width: 55,
                           ),
                           IconButton(
-                              onPressed: () => {
-                                    Navigator.pushReplacementNamed(context, '/options')
-                                  },
+                              onPressed: () {
+                                Provider.of<QuizProvider>(context, listen: false).resetScore();
+                                Navigator.pushReplacementNamed(context, '/options');
+                              },
                               icon: const Icon(
                                 Icons.repeat,
                                 size: 35,

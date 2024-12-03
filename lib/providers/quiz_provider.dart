@@ -23,7 +23,7 @@ class QuizProvider with ChangeNotifier{
     } 
   }
 
-  void restartCurrentQuestionIndex(){
+  void resetCurrentQuestionIndex(){
     _currentQuestionIndex = 0;
   }
 
@@ -33,5 +33,9 @@ class QuizProvider with ChangeNotifier{
 
   void updateScore(){
     _score += 10;
+  }
+
+  void resetScore(){
+    _score = 0;
   }
 }

@@ -143,16 +143,22 @@ class _QuizState extends State<Quiz>{
                         style: answers[0] ?
                         ElevatedButton.styleFrom(
                         foregroundColor: isSelectedForeground,
-                        backgroundColor: isSelectedBackground
+                        backgroundColor: isSelectedBackground,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)
+                        )
                         ) :
                         ElevatedButton.styleFrom(
                         foregroundColor: notSelectedForeground,
-                        backgroundColor: notSelectedBackground
+                        backgroundColor: notSelectedBackground,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)
+                        )
                         ),
 
                         child: Consumer<QuizProvider>(
                           builder: (context, notifier, child) {
-                            return Text(notifier.questions[notifier.currentQuestionIndex].incorrectAnswers[0]);
+                            return Text(notifier.questions[notifier.currentQuestionIndex].allAnswers[0]);
                           }
                         )
                     ),
@@ -174,20 +180,22 @@ class _QuizState extends State<Quiz>{
                         style: answers[1] ?
                         ElevatedButton.styleFrom(
                         foregroundColor: isSelectedForeground,
-                        backgroundColor: isSelectedBackground
+                        backgroundColor: isSelectedBackground,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)
+                        )
                         ) :
                         ElevatedButton.styleFrom(
                         foregroundColor: notSelectedForeground,
-                        backgroundColor: notSelectedBackground
+                        backgroundColor: notSelectedBackground,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)
+                        )
                         ),
 
                         child: Consumer<QuizProvider>(
                           builder: (context, notifier, child) {
-                            print('O index da pergunta atual é: ${notifier.currentQuestionIndex}');
-                            print('O length da list é: ${notifier.questions.length}');
-                            print('O length da list incorrectAnswers é: ${notifier.questions[notifier.currentQuestionIndex].incorrectAnswers.length}');
-
-                            return Text(notifier.questions[notifier.currentQuestionIndex].incorrectAnswers[1]);
+                            return Text(notifier.questions[notifier.currentQuestionIndex].allAnswers[1]);
                           }
                         )
                     ),
@@ -209,16 +217,22 @@ class _QuizState extends State<Quiz>{
                         style: answers[2] ?
                         ElevatedButton.styleFrom(
                         foregroundColor: isSelectedForeground,
-                        backgroundColor: isSelectedBackground
+                        backgroundColor: isSelectedBackground,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)
+                        )
                         ) :
                         ElevatedButton.styleFrom(
                         foregroundColor: notSelectedForeground,
-                        backgroundColor: notSelectedBackground
+                        backgroundColor: notSelectedBackground,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)
+                        )
                         ),
                         
                         child: Consumer<QuizProvider>(
                           builder: (context, notifier, child) {
-                            return Text(notifier.questions[notifier.currentQuestionIndex].incorrectAnswers[2]);
+                            return Text(notifier.questions[notifier.currentQuestionIndex].allAnswers[2]);
                           }
                         )
                     ),
@@ -241,20 +255,59 @@ class _QuizState extends State<Quiz>{
                         style: answers[3] ?
                         ElevatedButton.styleFrom(
                         foregroundColor: isSelectedForeground,
-                        backgroundColor: isSelectedBackground
+                        backgroundColor: isSelectedBackground,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)
+                        )
                         ) :
                         ElevatedButton.styleFrom(
                         foregroundColor: notSelectedForeground,
-                        backgroundColor: notSelectedBackground
+                        backgroundColor: notSelectedBackground,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)
+                        )
                         ),
                         
                         child: Consumer<QuizProvider>(
                           builder: (context, notifier, child) {
-                            return Text(notifier.questions[notifier.currentQuestionIndex].correctAnswer);
+                            return Text(notifier.questions[notifier.currentQuestionIndex].allAnswers[3]);
                           }
                         )
                     ),
-                    
+
+                    const SizedBox(height: 20),
+
+                  /* Ink(
+                    decoration: BoxDecoration(
+                      color: answers[0] ? isSelectedBackground : notSelectedBackground,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(10),
+                      onTap: () {
+                        setState(() {
+                          if (answers.contains(true)){
+                            answers[1] = false;
+                            answers[2] = false;
+                            answers[3] = false;
+                          }
+                          answers[0] = true;
+                          selectedAnswerIndex = 0;
+                        });
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Center(
+                          child: Consumer<QuizProvider>(
+                            builder: (context, notifier, child) {
+                            return Text(notifier.questions[notifier.currentQuestionIndex].allAnswers[2]);
+                          }
+                        )
+                        )
+                        ),
+                    )
+                  ), */
+
                     const SizedBox(height: 40),
 
                     SizedBox(
@@ -264,12 +317,15 @@ class _QuizState extends State<Quiz>{
                           ElevatedButton(
                             onPressed: () {
                               var provider = Provider.of<QuizProvider>(context, listen: false);
-                              
-                              print('A resposta selecionada foi: $selectedAnswerIndex');
 
-                              print(answers);
+                              String correctAnswer = provider.questions[provider.currentQuestionIndex].correctAnswer;
+                              String selectedAnswer = provider.questions[provider.currentQuestionIndex].allAnswers[selectedAnswerIndex!];
                               
-                              if (answers[3] == true){
+                              print('Resposta selecionada: $selectedAnswer');
+                              print('Resposta correta: $correctAnswer');
+
+                              if (selectedAnswer == correctAnswer){
+                                print('Pontuou');
                                 provider.updateScore();
                               }
                               
@@ -281,7 +337,7 @@ class _QuizState extends State<Quiz>{
                                   )
                                 );
                               } else if (provider.currentQuestionIndex == 9) {
-                                provider.restartCurrentQuestionIndex();
+                                provider.resetCurrentQuestionIndex();
                                 Navigator.pushReplacement(
                                 context, MaterialPageRoute(
                                   builder: (context) => const Score()
@@ -311,5 +367,38 @@ class _QuizState extends State<Quiz>{
     return Text('$seconds',
     textAlign: TextAlign.right,
     style: const TextStyle(fontSize: 20));
+  }
+
+  Widget answerButton(int answerIndex, int buttonGroupLength){
+    return Ink(
+            decoration: BoxDecoration(
+              color: answers[0] ? isSelectedBackground : notSelectedBackground,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: InkWell(
+              borderRadius: BorderRadius.circular(10),
+              onTap: () {
+                setState(() {
+                  answers[answerIndex] = true;
+                  for(int i = 0; i < buttonGroupLength; i++){
+                    if(i != answerIndex){
+                    answers[i] = false;
+                  }
+                  }
+                  selectedAnswerIndex = answerIndex;
+                });
+              },
+              child: Container(
+                padding: const EdgeInsets.all(12.0),
+                child: Center(
+                  child: Consumer<QuizProvider>(
+                    builder: (context, notifier, child) {
+                    return Text(notifier.questions[notifier.currentQuestionIndex].allAnswers[2]);
+                  }
+                )
+                )
+                ),
+            )
+          );
   }
 }

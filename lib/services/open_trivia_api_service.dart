@@ -34,19 +34,19 @@ class OpenTriviaApiService {
     List<dynamic> results = data['results'];
 
     List<Question> questions = results.map<Question>((item) {
+      var allAnswers = _decodeList(List<String>.from(item['incorrect_answers']));
+      allAnswers.add(_decodeText(item['correct_answer']));
+      allAnswers.shuffle();
+
       return Question(
         type: item['type'],
         difficulty: item['difficulty'],
         category: item['category'],
         question: _decodeText(item['question']),
         correctAnswer: _decodeText(item['correct_answer']),
-        incorrectAnswers: _decodeList(List<String>.from(item['incorrect_answers'])),
+        allAnswers: allAnswers,
       );
     }).toList();
-
-   for (int i = 0; i < questions.length; i++){
-    print('A questão $i tem ${questions[i].incorrectAnswers.length} respostas incorretas');
-   }
 
     return questions;
   }
