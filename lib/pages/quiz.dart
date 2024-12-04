@@ -24,13 +24,6 @@ class _QuizState extends State<Quiz>{
   final Color isSelectedForeground  = Colors.black;
   final Color isSelectedBackground  = const Color.fromARGB(255, 247, 203, 7);
 
-  bool isMultiple(String questionType){
-    if(questionType == 'multiple'){
-      return true;
-    }
-    return false;
-  }
-
   int seconds = 30;
   Timer? timer;
 
@@ -249,7 +242,6 @@ class _QuizState extends State<Quiz>{
                           }
                           answers[3] = true;
                           selectedAnswerIndex = 3;
-                          print(selectedAnswerIndex);
                         });
                       },
                         style: answers[3] ?
@@ -275,39 +267,6 @@ class _QuizState extends State<Quiz>{
                         )
                     ),
 
-                    const SizedBox(height: 20),
-
-                  /* Ink(
-                    decoration: BoxDecoration(
-                      color: answers[0] ? isSelectedBackground : notSelectedBackground,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(10),
-                      onTap: () {
-                        setState(() {
-                          if (answers.contains(true)){
-                            answers[1] = false;
-                            answers[2] = false;
-                            answers[3] = false;
-                          }
-                          answers[0] = true;
-                          selectedAnswerIndex = 0;
-                        });
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Center(
-                          child: Consumer<QuizProvider>(
-                            builder: (context, notifier, child) {
-                            return Text(notifier.questions[notifier.currentQuestionIndex].allAnswers[2]);
-                          }
-                        )
-                        )
-                        ),
-                    )
-                  ), */
-
                     const SizedBox(height: 40),
 
                     SizedBox(
@@ -325,7 +284,6 @@ class _QuizState extends State<Quiz>{
                               print('Resposta correta: $correctAnswer');
 
                               if (selectedAnswer == correctAnswer){
-                                print('Pontuou');
                                 provider.updateScore();
                               }
                               
@@ -367,38 +325,5 @@ class _QuizState extends State<Quiz>{
     return Text('$seconds',
     textAlign: TextAlign.right,
     style: const TextStyle(fontSize: 20));
-  }
-
-  Widget answerButton(int answerIndex, int buttonGroupLength){
-    return Ink(
-            decoration: BoxDecoration(
-              color: answers[0] ? isSelectedBackground : notSelectedBackground,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: InkWell(
-              borderRadius: BorderRadius.circular(10),
-              onTap: () {
-                setState(() {
-                  answers[answerIndex] = true;
-                  for(int i = 0; i < buttonGroupLength; i++){
-                    if(i != answerIndex){
-                    answers[i] = false;
-                  }
-                  }
-                  selectedAnswerIndex = answerIndex;
-                });
-              },
-              child: Container(
-                padding: const EdgeInsets.all(12.0),
-                child: Center(
-                  child: Consumer<QuizProvider>(
-                    builder: (context, notifier, child) {
-                    return Text(notifier.questions[notifier.currentQuestionIndex].allAnswers[2]);
-                  }
-                )
-                )
-                ),
-            )
-          );
   }
 }

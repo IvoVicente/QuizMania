@@ -28,7 +28,7 @@ class Score extends StatelessWidget {
               Consumer<QuizProvider>(
                   builder: (context, notifier, child){
                     return Text(
-                      'Total Score: ${notifier.score}',
+                      '${notifier.score}',
                       style: const TextStyle(fontSize: 24),
                     );
                   }

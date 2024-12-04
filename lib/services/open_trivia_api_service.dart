@@ -8,21 +8,15 @@ class OpenTriviaApiService {
   Future<List<Question>> fetchQuestions(int category, String difficulty) async{
     const int amount = 10;
 
-    final String finalUrl = '${baseUrl}amount=$amount&category=$category&difficulty=$difficulty&type=multiple';
-
-    print(finalUrl);
+    final String finalUrl = 
+    '${baseUrl}amount=$amount&category=$category&difficulty=$difficulty&type=multiple';
 
     try{
-      print('aqui');
-      Uri uri = Uri.parse(finalUrl);
-      print(uri);
       final response = await http.get(Uri.parse(finalUrl));
-      print(response.body);
       if(response.statusCode == 200){
-        print('reponse funcionou');
         return _parseQuestions(response.body);
       } else {
-        throw Exception('Dados não encontrados. Status: ${response.statusCode}');
+        throw Exception('Problema no acesso. Status: ${response.statusCode}');
       }
     } catch (e){
       throw Exception('Não foi possível acessar a API. Erro: $e');
@@ -59,7 +53,12 @@ class OpenTriviaApiService {
                .replaceAll('&aacute;', 'á')
                .replaceAll('&uacute;', 'ú')
                .replaceAll('&lt;', '<')
-               .replaceAll('&gt;', '>');
+               .replaceAll('&gt;', '>')
+               .replaceAll('&pi;', 'π')
+               .replaceAll('&sup2;', '²')
+               .replaceAll('&rsquo;', '’')
+               .replaceAll('&ouml;', 'ö')
+               .replaceAll('&Eacute;', 'É');
   }
 
   List<String> _decodeList(List<String> list){

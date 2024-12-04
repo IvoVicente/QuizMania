@@ -492,7 +492,6 @@ class OptionStatefulState extends State<OptionsPage>{
                 }
               if(context.mounted){
                 Provider.of<QuizProvider>(context, listen: false).updateQuestions(questions);
-                print('O tamanho da list é: ${questions.length}');
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const Quiz()));
               }
             },

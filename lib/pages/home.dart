@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
                   onPressed: () => {
                     Navigator.push(context,
                         MaterialPageRoute(
-                          builder: (context) => OptionsPage()))
+                          builder: (context) => const OptionsPage()))
                   },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(horizontal: 70),
@@ -53,7 +53,8 @@ class HomePage extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const HowPlay()))
+                            builder: (context) => const HowPlay()
+                        ))
                   },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(horizontal: 35),
